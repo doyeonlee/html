@@ -254,6 +254,45 @@ function App() {
 }
 
 ReactDOM.render(<App />, document.getElementById("root"));</code></pre>
+            <h3 id="intro2-5" class="pt20">컴퍼넌트 추출</h3>
+            <pre class="language-js"><code>import React from "react";
+import ReactDOM from "react-dom";
+
+function formatDate(date) {
+  return date.toLocaleDateString();
+}
+
+function Comment(props) {
+  return (
+    &lt;div className="comment"&gt;
+      &lt;div className="user-info"&gt;
+        &lt;img
+          className="avatar"
+          src={props.author.avatarUrl}
+          alt={props.author.name}
+        /&gt;
+        &lt;div className="user-name"&gt;{props.author.name}&lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div className="comment-text"&gt;{props.text}&lt;/div&gt;
+      &lt;div className="comment-date"&gt;{formatDate(props.date)}&lt;/div&gt;
+    &lt;/div&gt;
+  );
+}
+
+const comment = {
+  date: new Date(),
+  text: "텍스트",
+  author: {
+    name: "paperbag",
+    avatarUrl:
+      "http://studydoyeon.dothome.co.kr/portfolio/assets/images/aboutImg02@2x.jpg",
+  },
+};
+
+ReactDOM.render(
+  &lt;Comment date={comment.date} text={comment.text} author={comment.author} /&gt;,
+  document.getElementById("root")
+);</code></pre>
           </div>
           <!-- //Intro2 -->
         </div>
@@ -271,6 +310,7 @@ ReactDOM.render(<App />, document.getElementById("root"));</code></pre>
                   <li><a href="#intro2-3">랜더링</a></li>
                   <li><a href="#intro2-4">컴퍼넌트</a></li>
                   <li><a href="#intro2-5">컴퍼넌트 합성</a></li>
+                  <li><a href="#intro2-6">컴퍼넌트 추출</a></li>
                 </ul>
               </li>
               <li><a href="#intro3">MySQL 설치</a></li>
